@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ari Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+html,body{margin:0}
+/* Layout: left anchored editorial column. Each case opens with its numbers, then a wide tinted stage holding the screens, then two short paragraphs. */
+:root{
+  --bg:#F1F2EE; --ink:#191C18; --muted:#646A62; --line:#DBDED6;
+  --surface:#FBFCFA; --stage:#E4E8E1; --accent:#14624A; --accent-weak:#E6EEE9;
+  --high:#A3321F; --high-weak:#F6E3DE; --med:#8A5A0B; --med-weak:#F5EAD3;
+  --tbc:#8A5A0B;
+  --disp:Calibri,Carlito,"Segoe UI",system-ui,sans-serif;
+  --text:Calibri,Carlito,"Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101410; --ink:#E7EBE5; --muted:#8E968B; --line:#262C24;
+  --surface:#161B15; --stage:#1A2019; --accent:#6ECCA6; --accent-weak:#16271F;
+  --high:#F19A88; --high-weak:#3A1F1A; --med:#E8B867; --med-weak:#33280F; --tbc:#E8B867; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#101410; --ink:#E7EBE5; --muted:#8E968B; --line:#262C24;
+  --surface:#161B15; --stage:#1A2019; --accent:#6ECCA6; --accent-weak:#16271F;
+  --high:#F19A88; --high-weak:#3A1F1A; --med:#E8B867; --med-weak:#33280F; --tbc:#E8B867; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--text);-webkit-font-smoothing:antialiased;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3,h4{margin:0;font-family:var(--disp);text-wrap:balance;letter-spacing:-.015em}
+p{margin:0}
+.tnum{font-variant-numeric:tabular-nums}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+
+.label{display:inline-flex;align-items:center;gap:12px;font-weight:700;font-size:13px;letter-spacing:.03em;color:var(--accent)}
+.label::before{content:"";width:26px;height:1.5px;background:var(--accent);opacity:.65}
+.tbc{border-bottom:1.5px dotted var(--tbc)}
+.tbc::after{content:"confirm";font-size:10px;font-weight:700;letter-spacing:.04em;color:var(--tbc);vertical-align:super;margin-left:3px}
+.draft{font-size:13px;color:var(--muted);padding-block:10px;border-bottom:1px solid var(--line)}
+
+/* top */
+.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;padding-block:24px}
+.top .n{font-weight:700;font-size:18px}
+.top .r{color:var(--muted);font-size:14px}
+
+/* hero */
+.hero{padding-block:56px 64px}
+.hero h1{font-weight:700;font-size:clamp(36px,6.4vw,68px);line-height:1.02;max-width:16ch;margin-top:22px}
+.hero p{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:56ch;margin-top:28px}
+.index{display:grid;grid-template-columns:minmax(0,1fr);margin-top:56px;border-top:2px solid var(--ink)}
+.index a{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:4px 28px;align-items:baseline;padding-block:14px;border-bottom:1px solid var(--line);color:var(--ink)}
+.index a:hover{text-decoration:none}
+.index a:hover b{color:var(--accent)}
+.index b{display:block;font-size:17px;line-height:1.25}
+.index span{display:block;color:var(--muted);font-size:14px}
+@media (max-width:760px){.index a{grid-template-columns:minmax(0,1fr)}}
+
+/* who it helps */
+.gain{padding-block:56px;border-top:1px solid var(--line)}
+.gain > p{font-size:19px;max-width:56ch;margin-top:18px}
+.gains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 40px;margin-top:36px}
+.gains h3{font-size:19px;margin-bottom:10px;padding-top:12px;border-top:2px solid var(--accent)}
+.gains ul{margin:0;padding-left:18px;color:var(--muted);display:grid;gap:8px;font-size:16px}
+@media (max-width:760px){.gains{grid-template-columns:minmax(0,1fr)}}
+
+/* case */
+.case{padding-block:72px;border-top:1px solid var(--line)}
+.case h2{font-weight:700;font-size:clamp(30px,4.6vw,48px);line-height:1.05;max-width:18ch;margin-top:18px}
+.case .lead{font-size:19px;color:var(--muted);max-width:52ch;margin-top:18px}
+
+.figs{display:flex;flex-wrap:wrap;gap:22px 56px;margin-top:40px}
+.fig .n{font-weight:700;font-size:clamp(34px,5vw,46px);line-height:1;font-variant-numeric:tabular-nums}
+.fig .n small{font-size:.5em;font-weight:700;color:var(--muted);margin-left:4px}
+.fig .l{color:var(--muted);font-size:14px;margin-top:10px;max-width:20ch;line-height:1.4}
+
+.stage{background:var(--stage);margin-top:44px;padding:clamp(18px,4vw,44px);border-radius:4px}
+.shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}
+.shots.wide{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+.shot{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;min-width:0;box-shadow:0 18px 40px -28px rgba(20,40,30,.45)}
+.shot .bar{padding:10px 15px;border-bottom:1px solid var(--line);font-size:12px;font-weight:700}
+.shot .body{padding:16px}
+.cap{font-size:12.5px;color:var(--muted);margin-top:14px}
+
+.fx{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid var(--line);gap:12px}
+.fx:last-of-type{border:0}
+.fx .nm{font-size:14px;min-width:0}
+.fx .nm i{display:block;font-style:italic;color:var(--muted);font-size:12px}
+.fx .q{font-size:13px;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+.tot{display:flex;justify-content:space-between;margin-top:12px;font-weight:700;font-size:14.5px;font-variant-numeric:tabular-nums}
+.doc h4{font-size:14px;margin-bottom:3px}
+.doc .sub{font-size:12px;color:var(--muted);margin-bottom:12px}
+.tw{overflow-x:auto}
+.doc table{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.doc th,.doc td{border-bottom:1px solid var(--line);padding:6px 7px;text-align:left;white-space:nowrap}
+.doc th{font-weight:700;color:var(--muted);font-size:11px}
+.doc td.r,.doc th.r{text-align:right}
+
+/* bank tool mock */
+.kp{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:14px}
+.kp div{border:1px solid var(--line);border-radius:6px;padding:8px 10px}
+.kp i{display:block;font-style:normal;color:var(--muted);font-size:11px}
+.kp b{font-size:16px;font-variant-numeric:tabular-nums}
+.ck{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:6px 0;border-bottom:1px solid var(--line)}
+.ck:last-child{border:0}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:1px 6px;white-space:nowrap}
+.tag.ok{background:var(--accent-weak);color:var(--accent)}
+.tag.hi{background:var(--high-weak);color:var(--high)}
+.tag.me{background:var(--med-weak);color:var(--med)}
+.tag.in{background:var(--line);color:var(--muted)}
+
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 56px;margin-top:44px}
+.cols h3{font-size:15px;color:var(--accent);margin-bottom:8px;letter-spacing:.01em}
+.cols p{max-width:46ch}
+
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:36px}
+.flow .node{font-weight:700;font-size:13.5px;border:1px solid var(--line);border-radius:6px;padding:8px 12px;background:var(--surface)}
+.flow .node.man{border-style:dashed;color:var(--muted);background:transparent}
+.flow .arr{color:var(--accent);font-weight:700;font-size:14px}
+.note{color:var(--muted);font-size:13.5px;margin-top:12px;max-width:60ch}
+.tech{color:var(--muted);font-size:14px;margin-top:30px;line-height:1.7}
+.tech b{color:var(--ink)}
+
+/* what I do */
+.do{padding-block:72px;border-top:1px solid var(--line)}
+.capr{display:grid;grid-template-columns:220px minmax(0,1fr);gap:8px 40px;padding-block:22px;border-top:1px solid var(--line)}
+.capr:first-of-type{margin-top:36px}
+.capr:last-child{border-bottom:1px solid var(--line)}
+.capr h3{font-size:19px}
+.capr p{color:var(--muted);max-width:56ch}
+
+/* experience */
+.exp{padding-block:72px;border-top:1px solid var(--line)}
+.job{display:grid;grid-template-columns:220px minmax(0,1fr);gap:6px 40px;padding-block:20px;border-top:1px solid var(--line)}
+.job:first-of-type{margin-top:36px}
+.job:last-child{border-bottom:1px solid var(--line)}
+.job .when{color:var(--muted);font-size:15px;font-variant-numeric:tabular-nums}
+.job h3{font-size:19px}
+.job p{color:var(--muted);max-width:56ch;margin-top:4px}
+@media (max-width:760px){.job{grid-template-columns:minmax(0,1fr)}}
+
+/* contact */
+.contact{padding-block:72px;border-top:2px solid var(--ink)}
+.contact h2{font-weight:700;font-size:clamp(30px,4.8vw,50px);line-height:1.05;max-width:15ch;margin-top:20px}
+.spec{margin-top:32px;max-width:520px}
+.spec .row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
+.spec .row:last-child{border-bottom:1px solid var(--line)}
+.spec .k{color:var(--muted)}
+.foot{padding-block:24px 40px;color:var(--muted);font-size:13px}
+
+@media (max-width:760px){
+  .index{grid-template-columns:minmax(0,1fr)}
+  .shots,.shots.wide,.cols{grid-template-columns:minmax(0,1fr)}
+  .capr{grid-template-columns:minmax(0,1fr)}
+  .kp{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (prefers-reduced-motion:no-preference){.index a b{transition:color .15s}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <span class="n">Gusti Ayu Ari Karunia Dewi <span style="font-weight:400;color:var(--muted)">(Ari)</span></span>
+    <span class="r">Accountant, Bali</span>
+  </header>
+
+  <section class="hero">
+    <span class="label">Accountant who builds the systems behind the numbers</span>
+    <h1>I find the manual steps that slow a finance team down, and I build the system that removes them.</h1>
+    <p>I know accounting, finance and tax, and I am genuinely into technology. Beyond the tasks I am given, I look for where the work loses time or money, then use technology to fix it. Six examples are below.</p>
+    <nav class="index" aria-label="Work">
+      <a href="#cleanup"><b>From a year behind to books kept daily</b><span>Cleanup, working papers and Xero training</span></a>
+      <a href="#ordering"><b>Online ordering that writes its own invoices</b><span>Order to invoice, harvest and packing</span></a>
+      <a href="#payroll"><b>Payroll from the attendance machine</b><span>30 staff, payslips sent privately</span></a>
+      <a href="#restaurant"><b>Restaurant books, POS and food cost</b><span>Manual to Xero, cost from 45% to 33%</span></a>
+      <a href="#donor"><b>Donor reporting workbook</b><span>Journal for Xero, budget check first</span></a>
+      <a href="#bank"><b>Quick transaction flagging for due diligence</b><span>Shortens the bank statement step</span></a>
+    </nav>
+  </section>
+
+  <section class="gain">
+    <span class="label">What changes</span>
+    <p>Each fix has to work for everyone around it: the people doing the work, the business paying for it, and whoever relies on the numbers.</p>
+    <div class="gains">
+      <div><h3>For the team</h3><ul>
+        <li>Back office staff now run Xero daily on their own</li>
+        <li>Built so back office no longer works on their day off</li>
+        <li>Payroll in about two hours instead of two days</li>
+      </ul></div>
+      <div><h3>For the business</h3><ul>
+        <li>Food and beverage cost down from 45% to 33% of sales</li>
+        <li>No added monthly software cost at current volume</li>
+        <li>Less overtime expected</li>
+      </ul></div>
+      <div><h3>For the numbers</h3><ul>
+        <li>Books current, after being up to a year behind</li>
+        <li>Bank transactions that need a question flagged early in due diligence</li>
+        <li>Budget variances seen before the donor report</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <article class="case" id="cleanup">
+    <span class="label">Freelance &middot; A Bali organic farm</span>
+    <h2>From a year behind to books kept daily</h2>
+    <p class="lead">I was brought in to untangle the books. Transactions were reaching Xero up to a year late. Today the back office team records them daily, on their own.</p>
+
+    <div class="figs">
+      <div class="fig"><div class="n">12<small>months</small></div><div class="l">recording delay in Xero, before</div></div>
+      <div class="fig"><div class="n">Daily</div><div class="l">recording by the back office team, now</div></div>
+      <div class="fig"><div class="n">5</div><div class="l">back office staff trained to run Xero</div></div>
+    </div>
+
+    <div class="stage">
+      <div class="shots">
+        <div class="shot">
+          <div class="bar">Trial balance with working paper references</div>
+          <div class="body doc">
+            <div class="tw"><table>
+              <tr><th>Account</th><th class="r">Balance</th><th>Support</th><th>WP</th><th>Adj</th></tr>
+              <tr><td>Cash at bank</td><td class="r">184.250.000</td><td>Statement</td><td>BS 01</td><td></td></tr>
+              <tr><td>Prepaid rent</td><td class="r">36.000.000</td><td>Contract</td><td>BS 03</td><td>1</td></tr>
+              <tr><td>Staff loans</td><td class="r">7.400.000</td><td>Ledger</td><td>BS 04</td><td>2</td></tr>
+              <tr><td>Trade payables</td><td class="r">(52.800.000)</td><td>Aged list</td><td>BS 05</td><td></td></tr>
+              <tr><td>Office rental</td><td class="r">15.600.000</td><td>Receipts</td><td>PL 14</td><td></td></tr>
+            </table></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="bar">Findings list</div>
+          <div class="body doc">
+            <div class="tw"><table>
+              <tr><th>Account</th><th>Finding</th><th>WP</th><th>Plan</th></tr>
+              <tr><td>Prepaid rent</td><td>Not amortised for part of the year</td><td>BS 03</td><td>Adjust</td></tr>
+              <tr><td>Staff loans</td><td>Repayments not matched to payroll</td><td>BS 04</td><td>Adjust</td></tr>
+              <tr><td>Bank charges</td><td>Several months not recorded</td><td>BS 01</td><td>Record</td></tr>
+              <tr><td>Supplier bills</td><td>Same bill entered twice</td><td>BS 05</td><td>Void</td></tr>
+            </table></div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Representative layout of the year end working papers. Accounts, figures and findings are dummy.</p>
+    </div>
+
+    <div class="cols">
+      <div><h3>The problem</h3><p>Entries were made long after the fact, so a January transaction could first appear in Xero in December. Balances could not be relied on, and the back office team did not yet know how to use Xero.</p></div>
+      <div><h3>What I did</h3><p>I built a set of working papers in the style of an audit file: a trial balance tied to 20 account schedules, each with its supporting documents, plus a findings list of 18 issues with the adjustment for each. Then I trained the back office team until they could keep Xero current themselves.</p></div>
+    </div>
+    <p class="note">The cleanup also showed where the manual work was. The ordering portal and payroll system below were built during the same engagement.</p>
+
+    <p class="tech"><b>Xero</b> &middot; working papers &middot; account reconciliation &middot; year end adjustments &middot; staff training</p>
+  </article>
+
+  <article class="case" id="ordering">
+    <span class="label">Freelance &middot; A Bali organic farm</span>
+    <h2>Online ordering that writes its own invoices</h2>
+    <p class="lead">Around 70 hotel and restaurant orders a day used to arrive by WhatsApp and be typed in by hand. Now each order becomes a Xero draft invoice on its own.</p>
+
+    <div class="figs">
+      <div class="fig"><div class="n">70<small>a day</small></div><div class="l">wholesale orders handled through the portal</div></div>
+      <div class="fig"><div class="n">50%</div><div class="l">less time on order handling across three teams</div></div>
+      <div class="fig"><div class="n">4<small>hours</small></div><div class="l">of Sunday recap the system is built to end</div></div>
+    </div>
+
+    <div class="stage">
+      <div class="shots">
+        <div class="shot">
+          <div class="bar">Order page</div>
+          <div class="body">
+            <div class="fx"><div class="nm">Avocado<i>Persea americana</i></div><span class="q">2 Kg</span></div>
+            <div class="fx"><div class="nm">Ginger, Red<i>500 g pack</i></div><span class="q">4</span></div>
+            <div class="fx"><div class="nm">Carrot, Nantes<i>Daucus carota</i></div><span class="q">3 Kg</span></div>
+            <div class="fx"><div class="nm">Rose Apple<i>Syzygium samarangense</i></div><span class="q">1 Kg</span></div>
+            <div class="tot"><span>Estimated total</span><span>Rp 312.000</span></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="bar">Packing slip</div>
+          <div class="body doc">
+            <h4>[Customer name]</h4>
+            <div class="sub">Kirim: Sun, 2 Nov 2026 &middot; Order WEB 20261101 0003</div>
+            <div class="tw"><table>
+              <tr><th>Produk</th><th>D</th><th>Unit</th><th class="r">Qty</th><th>Aktual</th></tr>
+              <tr><td>Avocado</td><td>T</td><td>Kg</td><td class="r">2</td><td></td></tr>
+              <tr><td>Ginger, Red</td><td>T</td><td>500 g</td><td class="r">4</td><td></td></tr>
+              <tr><td>Arugula, Wasabi</td><td>H</td><td>Kg</td><td class="r">1</td><td></td></tr>
+              <tr><td>Carrot, Nantes</td><td>T</td><td>Kg</td><td class="r">3</td><td></td></tr>
+            </table></div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Representative screens. Customer names and figures are dummy.</p>
+    </div>
+
+    <div class="cols">
+      <div><h3>The problem</h3><p>Orders came in by chat until a 16:00 cut off. Each one was typed into an invoice, recapped by hand for the harvest team, passed to packing, then corrected the next day once actual quantities were known. Back office staff came in on Sundays to finish the recap.</p></div>
+      <div><h3>What I built</h3><p>A personal order page for each customer that feeds Xero directly. Every order creates a draft invoice with the right item codes and division tracking. The recap updates live, so harvest has it at cut off, and packing slips print from the same data.</p></div>
+    </div>
+
+    <div class="flow">
+      <span class="node">Customer orders</span><span class="arr">&rarr;</span>
+      <span class="node">Draft invoice in Xero</span><span class="arr">&rarr;</span>
+      <span class="node">Live recap at cut off</span><span class="arr">&rarr;</span>
+      <span class="node">Harvest and packing slips</span><span class="arr">&rarr;</span>
+      <span class="node man">Quantity adjustment</span>
+    </div>
+    <p class="note">Solid steps run on their own. The dashed step stays manual: adjusting lines that could not be fulfilled after harvest.</p>
+
+    <p class="tech"><b>Xero API</b> &middot; OAuth2 &middot; Google Apps Script &middot; No added monthly cost at current volume, within the free limits</p>
+  </article>
+
+  <article class="case" id="payroll">
+    <span class="label">Freelance &middot; Same farm</span>
+    <h2>Payroll that runs from the attendance machine</h2>
+    <p class="lead">No HRIS, and Xero has no payroll in Indonesia. Payroll for 30 staff used to take two working days. It now takes about two hours.</p>
+
+    <div class="figs">
+      <div class="fig"><div class="n">30</div><div class="l">staff paid each run</div></div>
+      <div class="fig"><div class="n">2<small>days</small></div><div class="l">to prepare payslips and the payroll report, before</div></div>
+      <div class="fig"><div class="n">2<small>hours</small></div><div class="l">for the same work now, about 87% less time</div></div>
+    </div>
+
+    <div class="stage">
+      <div class="shots">
+        <div class="shot">
+          <div class="bar">Payslip</div>
+          <div class="body doc">
+            <h4>Payslip &middot; October 2026</h4>
+            <div class="sub">Staff: [name] &middot; ID 014</div>
+            <div class="fx"><div class="nm">Basic pay</div><span class="q">Rp 3.800.000</span></div>
+            <div class="fx"><div class="nm">Attendance allowance</div><span class="q">Rp 300.000</span></div>
+            <div class="fx"><div class="nm">Deductions</div><span class="q">Rp 120.000</span></div>
+            <div class="tot"><span>Net pay</span><span>Rp 3.980.000</span></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="bar">Attendance to payroll</div>
+          <div class="body doc">
+            <div class="tw"><table>
+              <tr><th>Staff</th><th class="r">Days</th><th class="r">Hours</th><th class="r">Net pay</th></tr>
+              <tr><td>[name]</td><td class="r">24</td><td class="r">192</td><td class="r">3.980.000</td></tr>
+              <tr><td>[name]</td><td class="r">22</td><td class="r">176</td><td class="r">3.610.000</td></tr>
+              <tr><td>[name]</td><td class="r">25</td><td class="r">200</td><td class="r">4.150.000</td></tr>
+              <tr><td>[name]</td><td class="r">20</td><td class="r">160</td><td class="r">3.280.000</td></tr>
+            </table></div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Representative screens. Names and numbers are dummy.</p>
+    </div>
+
+    <div class="cols">
+      <div><h3>The problem</h3><p>Every month the attendance machine was tallied by hand, pay was worked out person by person, and each payslip and the payroll report were made one at a time.</p></div>
+      <div><h3>What I built</h3><p>A Google Sheets payroll that reads the attendance export, works out days, hours and pay, produces every payslip, and emails each one privately to the right person.</p></div>
+    </div>
+
+    <div class="flow">
+      <span class="node">Attendance export</span><span class="arr">&rarr;</span>
+      <span class="node">Pay calculated</span><span class="arr">&rarr;</span>
+      <span class="node">Payslip made</span><span class="arr">&rarr;</span>
+      <span class="node">Emailed privately</span>
+    </div>
+
+    <p class="tech"><b>Google Apps Script</b> &middot; Google Sheets &middot; automated email &middot; No added monthly cost at current volume, within the free limits</p>
+  </article>
+
+  <article class="case" id="restaurant">
+    <span class="label">In house &middot; A high volume restaurant group</span>
+    <h2>Restaurant books, POS and food cost</h2>
+    <p class="lead">I pushed for the move from manual books to Xero, recommended and moved the group to a POS that reports in the detail a restaurant needs, and built the costing that brought food and beverage cost down from 45% to 33% of sales.</p>
+
+    <div class="figs">
+      <div class="fig"><div class="n">45%<small>to 33%</small></div><div class="l">food and beverage cost as a share of sales</div></div>
+      <div class="fig"><div class="n">2<small>to 1</small></div><div class="l">POS systems, consolidated into one</div></div>
+      <div class="fig"><div class="n">Xero</div><div class="l">replacing manual bookkeeping</div></div>
+    </div>
+
+    <div class="stage">
+      <div class="shots">
+        <div class="shot">
+          <div class="bar">Recipe costing</div>
+          <div class="body doc">
+            <h4>Beef burger</h4>
+            <div class="sub">Cost per portion</div>
+            <div class="fx"><div class="nm">Beef patty<i>150 g cooked</i></div><span class="q">22.500</span></div>
+            <div class="fx"><div class="nm">Process loss<i>30 g trim and cooking loss</i></div><span class="q">4.500</span></div>
+            <div class="fx"><div class="nm">Bun<i>1 pc</i></div><span class="q">4.500</span></div>
+            <div class="fx"><div class="nm">Cheese<i>1 slice</i></div><span class="q">3.200</span></div>
+            <div class="fx"><div class="nm">Vegetables and sauce</div><span class="q">3.700</span></div>
+            <div class="tot"><span>Recipe cost</span><span>Rp 38.400</span></div>
+            <div class="tot" style="color:var(--accent)"><span>Price for 33% cost</span><span>Rp 116.400</span></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="bar">Menu cost review</div>
+          <div class="body doc">
+            <div class="tw"><table>
+              <tr><th>Item</th><th class="r">Cost</th><th class="r">Price</th><th class="r">Cost %</th></tr>
+              <tr><td>Beef burger</td><td class="r">38.400</td><td class="r">85.000</td><td class="r"><span class="tag hi">45.2%</span></td></tr>
+              <tr><td>Chicken rice bowl</td><td class="r">21.600</td><td class="r">55.000</td><td class="r"><span class="tag me">39.3%</span></td></tr>
+              <tr><td>Iced latte</td><td class="r">9.200</td><td class="r">35.000</td><td class="r"><span class="tag ok">26.3%</span></td></tr>
+            </table></div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Representative working papers. Menu items and figures are dummy.</p>
+    </div>
+
+    <div class="cols">
+      <div><h3>The problem</h3><p>The books were kept by hand and sales ran through two different POS systems. Recipe costs left out the loss in preparation and cooking, so the real cost of each dish was understated and selling prices were set too low.</p></div>
+      <div><h3>What I did</h3><p>I initiated the move to Xero and made the case to the owner. After comparing POS options, I recommended ESB for its detailed restaurant reporting and consolidated Abacus and Moka into it. Then I built a COGS working paper that costs every recipe including process loss, so the right selling price for each item became visible.</p></div>
+    </div>
+
+    <div class="flow">
+      <span class="node">Abacus and Moka</span><span class="arr">&rarr;</span>
+      <span class="node">ESB</span><span class="arr">&rarr;</span>
+      <span class="node">Xero</span><span class="arr">&rarr;</span>
+      <span class="node">COGS with process loss</span><span class="arr">&rarr;</span>
+      <span class="node">Selling price</span>
+    </div>
+
+    <p class="tech"><b>Xero</b> &middot; ESB POS &middot; recipe costing &middot; COGS working papers &middot; system migration</p>
+  </article>
+
+  <article class="case" id="donor">
+    <span class="label">In house &middot; A partly donor funded organisation</span>
+    <h2>Donor reporting workbook</h2>
+    <p class="lead">Donor reporting starts with gathering every transaction that belongs to each donor. I built an Excel workbook that does the gathering, produces the journal to upload into Xero, and shows which budget lines are over or under before anything goes into the donor report.</p>
+
+    <div class="stage">
+      <div class="shots">
+        <div class="shot">
+          <div class="bar">Budget check</div>
+          <div class="body doc">
+            <h4>[Donor] &middot; [Grant]</h4>
+            <div class="sub">Actual against budget, before reporting</div>
+            <div class="tw"><table>
+              <tr><th>Budget line</th><th class="r">Budget</th><th class="r">Actual</th><th class="r">Status</th></tr>
+              <tr><td>Personnel</td><td class="r">120.000.000</td><td class="r">118.400.000</td><td class="r"><span class="tag ok">Within</span></td></tr>
+              <tr><td>Field activities</td><td class="r">45.000.000</td><td class="r">51.300.000</td><td class="r"><span class="tag hi">Over</span></td></tr>
+              <tr><td>Travel</td><td class="r">18.000.000</td><td class="r">9.600.000</td><td class="r"><span class="tag me">Under</span></td></tr>
+              <tr><td>Office and admin</td><td class="r">12.000.000</td><td class="r">11.750.000</td><td class="r"><span class="tag ok">Within</span></td></tr>
+            </table></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="bar">Journal for Xero import</div>
+          <div class="body doc">
+            <div class="tw"><table>
+              <tr><th>Narration</th><th>Account</th><th class="r">Amount</th><th>Tracking</th></tr>
+              <tr><td>Allocation, Sep</td><td>6100</td><td class="r">9.250.000</td><td>[Donor]</td></tr>
+              <tr><td>Allocation, Sep</td><td>6100</td><td class="r">(9.250.000)</td><td>General</td></tr>
+              <tr><td>Allocation, Sep</td><td>6320</td><td class="r">4.100.000</td><td>[Donor]</td></tr>
+              <tr><td>Allocation, Sep</td><td>6320</td><td class="r">(4.100.000)</td><td>General</td></tr>
+            </table></div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Representative layout. Donors, budget lines, accounts and figures are dummy.</p>
+    </div>
+
+    <div class="cols">
+      <div><h3>The problem</h3><p>Each report meant pulling every donor transaction together by hand and preparing the journals one by one. Budget variances only showed up once the figures were already in the donor report template.</p></div>
+      <div><h3>What I built</h3><p>A workbook that collects the transactions for each donor, writes the journal in a file ready to upload into Xero, and compares actual spending with the budget line by line. Variances are seen first, then the figures move into the donor report.</p></div>
+    </div>
+
+    <div class="flow">
+      <span class="node">Transactions</span><span class="arr">&rarr;</span>
+      <span class="node">Grouped by donor</span><span class="arr">&rarr;</span>
+      <span class="node">Journal uploaded to Xero</span><span class="arr">&rarr;</span>
+      <span class="node">Budget check</span><span class="arr">&rarr;</span>
+      <span class="node">Donor report</span>
+    </div>
+
+    <p class="tech"><b>Excel</b> &middot; Xero journal import &middot; budget against actual &middot; donor reporting</p>
+  </article>
+
+  <article class="case" id="bank">
+    <span class="label">In house role &middot; Financial due diligence</span>
+    <h2>Quick transaction flagging for due diligence</h2>
+    <p class="lead">Due diligence is a long process, and the bank statement step is one of its most manual parts. This tool shortens it: drop in the PDF statements, and the transactions worth a question are flagged in one pass, with every figure checked against the statement.</p>
+
+    <div class="figs">
+      <div class="fig"><div class="n">15</div><div class="l">adjustable rules that flag transactions for review</div></div>
+      <div class="fig"><div class="n">0.00</div><div class="l">difference between what was read and the statement, on real files tested</div></div>
+      <div class="fig"><div class="n">Offline</div><div class="l">one file in the browser, statements never leave the computer</div></div>
+    </div>
+
+    <div class="stage">
+      <div class="shots wide">
+        <div class="shot">
+          <div class="bar">Summary</div>
+          <div class="body doc">
+            <div class="kp">
+              <div><i>Accounts</i><b>2</b></div>
+              <div><i>Months</i><b>1</b></div>
+              <div><i>Difference</i><b>0.00</b></div>
+              <div><i>Flagged rows</i><b>9</b></div>
+            </div>
+            <div class="ck"><span>Opening plus credits minus debits equals closing</span><span class="tag ok">Pass</span></div>
+            <div class="ck"><span>Totals agree to the statement</span><span class="tag ok">Pass</span></div>
+            <div class="ck"><span>Running balance agrees to every printed balance</span><span class="tag ok">Pass</span></div>
+            <div class="ck"><span>Closing agrees to next opening</span><span class="tag ok">Pass</span></div>
+            <div class="ck"><span>Missing months or duplicate uploads</span><span class="tag ok">None</span></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="bar">Red flags</div>
+          <div class="body doc">
+            <div class="tw"><table>
+              <tr><th>Date</th><th class="r">Amount</th><th>Reason</th></tr>
+              <tr><td>04 Sep</td><td class="r">48.200.000</td><td><span class="tag me">Just below threshold</span></td></tr>
+              <tr><td>09 Sep</td><td class="r">12.000.000</td><td><span class="tag hi">Large cash withdrawal</span></td></tr>
+              <tr><td>11 Sep</td><td class="r">30.000.000</td><td><span class="tag hi">Pass through</span></td></tr>
+              <tr><td>18 Sep</td><td class="r">25.000.000</td><td><span class="tag in">Own account, matched</span></td></tr>
+              <tr><td>26 Sep</td><td class="r">5.000.000</td><td><span class="tag in">Round amount</span></td></tr>
+            </table></div>
+          </div>
+        </div>
+      </div>
+      <p class="cap">Representative screens with dummy figures. Flags are filters for review, not conclusions. Demo available on request.</p>
+    </div>
+
+    <div class="cols">
+      <div><h3>The problem</h3><p>Statements from several banks, each laid out differently, had to be read, checked against their own balances, and scanned line by line for items that need an explanation.</p></div>
+      <div><h3>What I built</h3><p>A single offline file that works with any bank's PDF statement. BCA and BRI have dedicated readers, other banks are read by detecting their columns, and a new layout only needs its columns mapped once before it is saved for that bank. Everything exports to Excel in seven sheets.</p></div>
+    </div>
+
+    <div class="flow">
+      <span class="node">PDF statements</span><span class="arr">&rarr;</span>
+      <span class="node">Read and reconciled</span><span class="arr">&rarr;</span>
+      <span class="node">Flags for review</span><span class="arr">&rarr;</span>
+      <span class="node">Excel workpaper</span>
+    </div>
+
+    <p class="tech"><b>HTML and JavaScript</b> &middot; pdf.js &middot; SheetJS &middot; Any bank with a text based PDF statement</p>
+  </article>
+
+  <section class="do">
+    <span class="label">What I do</span>
+    <div class="capr"><h3>Accounting, finance and tax</h3><p>Day to day accounting and tax, multi currency reporting across IDR, AUD, SGD and USD, reconciliation, and financials that read cleanly for donors and investors. A background in hospitality accounting.</p></div>
+    <div class="capr"><h3>Systems and automation</h3><p>Connecting the tools a business already pays for and removing the manual steps between them, including Xero integrations, payroll and statement review.</p></div>
+    <div class="capr"><h3>Training teams</h3><p>I train the people who use what I build, so it keeps working after I hand it over. At a restaurant group I trained a back office team of 15 and an operational team of 30 on the new systems. At an organic farm, five back office staff who had not used Xero now record in it daily on their own.</p></div>
+    <div class="capr"><h3>How I work</h3><p>I start from the accounting: what has to be true at the end, which checks prove it, and where people lose time. The workflow, the rules and every check are my design. I use AI to write the code faster, the way another accountant might work with a developer.</p></div>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <div class="spec">
+      <div class="row"><span class="k">Email</span><span style="min-width:0;overflow-wrap:anywhere">arikarunia06@gmail.com</span></div>
+      <div class="row"><span class="k">LinkedIn</span><span style="min-width:0;overflow-wrap:anywhere"><a href="https://www.linkedin.com/in/gusti-ayu-ari-karunia-dewi-594b8b155/">linkedin.com/in/gusti-ayu-ari-karunia-dewi-594b8b155</a></span></div>
+      <div class="row"><span class="k">Based in</span><span>Bali, Indonesia</span></div>
+    </div>
+  </section>
+
+  <p class="foot">Gusti Ayu Ari Karunia Dewi &middot; Accountant, Bali</p>
+
+</div>
+</body>
+</html>
