@@ -181,7 +181,7 @@ a:hover{text-decoration:underline}
       <a href="#ordering"><b>Online ordering that writes its own invoices</b><span>Order to invoice, harvest and packing</span></a>
       <a href="#payroll"><b>Payroll from the attendance machine</b><span>30 staff, payslips sent privately</span></a>
       <a href="#restaurant"><b>Restaurant books, POS and food cost</b><span>Manual to Xero, cost from 45% to 33%</span></a>
-      <a href="#donor"><b>Donor reporting workbook</b><span>Journal for Xero, budget check first</span></a>
+      <a href="#donor"><b>Donor reporting workbook</b><span>Budget check in one day instead of two</span></a>
       <a href="#bank"><b>Quick transaction flagging for due diligence</b><span>Shortens the bank statement step</span></a>
     </nav>
   </section>
@@ -380,6 +380,7 @@ a:hover{text-decoration:underline}
     <div class="figs">
       <div class="fig"><div class="n">45%<small>to 33%</small></div><div class="l">food and beverage cost as a share of sales</div></div>
       <div class="fig"><div class="n">2<small>to 1</small></div><div class="l">POS systems, consolidated into one</div></div>
+      <div class="fig"><div class="n">1<small>hr/day</small></div><div class="l">saved on weekly supplier price comparison and ordering</div></div>
       <div class="fig"><div class="n">Xero</div><div class="l">replacing manual bookkeeping</div></div>
     </div>
 
@@ -410,13 +411,40 @@ a:hover{text-decoration:underline}
             </table></div>
           </div>
         </div>
+        <div class="shot">
+          <div class="bar">Weekly supplier price comparison</div>
+          <div class="body doc">
+            <div class="tw"><table>
+              <tr><th>Item</th><th class="r">Sup A</th><th class="r">Sup B</th><th class="r">Sup C</th><th class="r">Sup D</th><th>Best</th></tr>
+              <tr><td>Tomato, kg</td><td class="r">12.000</td><td class="r">11.500</td><td class="r">13.000</td><td class="r">12.200</td><td><span class="tag ok">Sup B</span></td></tr>
+              <tr><td>Capsicum, kg</td><td class="r">18.000</td><td class="r">19.000</td><td class="r">17.500</td><td class="r">18.500</td><td><span class="tag ok">Sup C</span></td></tr>
+              <tr><td>Lettuce, kg</td><td class="r">22.000</td><td class="r">22.000</td><td class="r">20.000</td><td class="r">21.000</td><td><span class="tag ok">Sup C</span></td></tr>
+              <tr><td>Lime, kg</td><td class="r">14.000</td><td class="r">15.500</td><td class="r">14.000</td><td class="r">13.500</td><td><span class="tag ok">Sup D</span></td></tr>
+            </table></div>
+          </div>
+        </div>
+        <div class="shot">
+          <div class="bar">Weekly management report</div>
+          <div class="body doc">
+            <div class="kp" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+              <div><i>Cash in</i><b>48.200.000</b></div>
+              <div><i>Cash out</i><b>31.600.000</b></div>
+              <div><i>COGS this week</i><b>33.1%</b></div>
+              <div><i>Stock variance</i><b>4 items</b></div>
+            </div>
+            <div class="fx"><div class="nm">Top spend: Produce suppliers</div><span class="q">12.400.000</span></div>
+            <div class="fx"><div class="nm">Top spend: Beverage suppliers</div><span class="q">8.750.000</span></div>
+            <div class="fx"><div class="nm">Alcohol variance flagged</div><span class="q"><span class="tag hi">3 bottles</span></span></div>
+            <div class="fx"><div class="nm">Process loss within target</div><span class="q"><span class="tag ok">Pass</span></span></div>
+          </div>
+        </div>
       </div>
-      <p class="cap">Representative working papers. Menu items and figures are dummy.</p>
+      <p class="cap">Representative screens. Menu items, supplier names and figures are dummy.</p>
     </div>
 
     <div class="cols">
       <div><h3>The problem</h3><p>The books were kept by hand and sales ran through two different POS systems. Recipe costs left out the loss in preparation and cooking, so the real cost of each dish was understated and selling prices were set too low.</p></div>
-      <div><h3>What I did</h3><p>I initiated the move to Xero and made the case to the owner. After comparing POS options, I recommended ESB for its detailed restaurant reporting and consolidated Abacus and Moka into it. Then I built a COGS working paper that costs every recipe including process loss, so the right selling price for each item became visible.</p></div>
+      <div><h3>What I did</h3><p>I initiated the move to Xero and made the case to the owner. After comparing POS options, I recommended ESB for its detailed restaurant reporting and consolidated Abacus and Moka into it. Then I built a COGS working paper that costs every recipe including process loss, so the right selling price for each item became visible. I also built a Google Sheet that compares weekly price lists from four or more suppliers and generates a ready to send WhatsApp order for each one, so the purchasing decision and the order both happen in one step. On top of that I designed a weekly management report in Google Sheets sent directly to the owner: cash flow, weekly income and expenditure, the biggest spend lines broken down by payee, weekly COGS, process loss, and stock variance with a specific focus on alcohol.</p></div>
     </div>
 
     <div class="flow">
@@ -426,14 +454,24 @@ a:hover{text-decoration:underline}
       <span class="node">COGS with process loss</span><span class="arr">&rarr;</span>
       <span class="node">Selling price</span>
     </div>
+    <div class="flow" style="margin-top:14px">
+      <span class="node">Supplier price lists</span><span class="arr">&rarr;</span>
+      <span class="node">Sorted by lowest price</span><span class="arr">&rarr;</span>
+      <span class="node">WhatsApp order per supplier</span>
+    </div>
 
-    <p class="tech"><b>Xero</b> &middot; ESB POS &middot; recipe costing &middot; COGS working papers &middot; system migration</p>
+    <p class="tech"><b>Xero</b> &middot; ESB POS &middot; recipe costing &middot; COGS working papers &middot; system migration &middot; Google Sheets &middot; supplier price comparison</p>
   </article>
 
   <article class="case" id="donor">
     <span class="label">In house &middot; A partly donor funded organisation</span>
     <h2>Donor reporting workbook</h2>
     <p class="lead">Donor reporting starts with gathering every transaction that belongs to each donor. I built an Excel workbook that does the gathering, produces the journal to upload into Xero, and shows which budget lines are over or under before anything goes into the donor report.</p>
+
+    <div class="figs">
+      <div class="fig"><div class="n">2<small>days</small></div><div class="l">to see which budget lines are over or under, before</div></div>
+      <div class="fig"><div class="n">1<small>day</small></div><div class="l">for the same result now, half the time</div></div>
+    </div>
 
     <div class="stage">
       <div class="shots">
@@ -489,7 +527,8 @@ a:hover{text-decoration:underline}
     <p class="lead">Due diligence is a long process, and the bank statement step is one of its most manual parts. This tool shortens it: drop in the PDF statements, and the transactions worth a question are flagged in one pass, with every figure checked against the statement.</p>
 
     <div class="figs">
-      <div class="fig"><div class="n">15</div><div class="l">adjustable rules that flag transactions for review</div></div>
+      <div class="fig"><div class="n">50%</div><div class="l">less time expected on the bank statement step</div></div>
+      <div class="fig"><div class="n">40</div><div class="l">checks across three levels: each transaction, each statement, each PDF file</div></div>
       <div class="fig"><div class="n">0.00</div><div class="l">difference between what was read and the statement, on real files tested</div></div>
       <div class="fig"><div class="n">Offline</div><div class="l">one file in the browser, statements never leave the computer</div></div>
     </div>
@@ -510,6 +549,7 @@ a:hover{text-decoration:underline}
             <div class="ck"><span>Running balance agrees to every printed balance</span><span class="tag ok">Pass</span></div>
             <div class="ck"><span>Closing agrees to next opening</span><span class="tag ok">Pass</span></div>
             <div class="ck"><span>Missing months or duplicate uploads</span><span class="tag ok">None</span></div>
+            <div class="ck"><span>PDF produced by general software, not a bank system</span><span class="tag me">Confirm with bank</span></div>
           </div>
         </div>
         <div class="shot">
@@ -519,9 +559,10 @@ a:hover{text-decoration:underline}
               <tr><th>Date</th><th class="r">Amount</th><th>Reason</th></tr>
               <tr><td>04 Sep</td><td class="r">48.200.000</td><td><span class="tag me">Just below threshold</span></td></tr>
               <tr><td>09 Sep</td><td class="r">12.000.000</td><td><span class="tag hi">Large cash withdrawal</span></td></tr>
-              <tr><td>11 Sep</td><td class="r">30.000.000</td><td><span class="tag hi">Pass through</span></td></tr>
+              <tr><td>11 Sep</td><td class="r">30.000.000</td><td><span class="tag hi">Round trip with third party</span></td></tr>
               <tr><td>18 Sep</td><td class="r">25.000.000</td><td><span class="tag in">Own account, matched</span></td></tr>
               <tr><td>26 Sep</td><td class="r">5.000.000</td><td><span class="tag in">Round amount</span></td></tr>
+              <tr><td>29 Sep</td><td class="r">40.000.000</td><td><span class="tag hi">Period end reversal</span></td></tr>
             </table></div>
           </div>
         </div>
@@ -531,17 +572,18 @@ a:hover{text-decoration:underline}
 
     <div class="cols">
       <div><h3>The problem</h3><p>Statements from several banks, each laid out differently, had to be read, checked against their own balances, and scanned line by line for items that need an explanation.</p></div>
-      <div><h3>What I built</h3><p>A single offline file that works with any bank's PDF statement. BCA, BRI, Mandiri, and BNI have dedicated readers, other banks are read by detecting their columns, and a new layout only needs its columns mapped once before it is saved for that bank. Everything exports to Excel in seven sheets.</p></div>
+      <div><h3>What I built</h3><p>A single offline file that works with any bank's PDF statement. BCA, BRI, Mandiri, and BNI have dedicated readers, other banks are read by detecting their columns, and a new layout only needs its columns mapped once before it is saved for that bank.</p><p style="margin-top:12px">It runs 40 checks on three levels. Each transaction is tested against 24 red flags graded High, Medium, or Info, such as round trips with a third party, period end reversals, and amounts just below a threshold. Each statement goes through 9 reconciliation checks. Each PDF file gets 7 authenticity checks, for example whether it was produced by a bank system or saved from general software. Reviewers mark every flag with a status and a note under their name, and everything exports to Excel in seven sheets.</p></div>
     </div>
 
     <div class="flow">
       <span class="node">PDF statements</span><span class="arr">&rarr;</span>
       <span class="node">Read and reconciled</span><span class="arr">&rarr;</span>
       <span class="node">Flags for review</span><span class="arr">&rarr;</span>
+      <span class="node man">Reviewer notes</span><span class="arr">&rarr;</span>
       <span class="node">Excel workpaper</span>
     </div>
 
-    <p class="tech"><b>HTML and JavaScript</b> &middot; pdf.js &middot; SheetJS &middot; Any bank with a text based PDF statement</p>
+    <p class="tech"><b>Browser based tool, built in HTML and JavaScript</b> &middot; pdf.js to read the PDF statements &middot; SheetJS to export to Excel &middot; No install, runs offline &middot; Any bank with a text based PDF statement</p>
   </article>
 
   <section class="do">
